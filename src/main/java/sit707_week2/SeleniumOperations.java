@@ -93,9 +93,38 @@ public class SeleniumOperations {
 		// Sleep a while
 		sleep(2);
 		
-		// close chrome driver
-//		driver.close();	
+		driver.close();	
 	}
-	
-	
+	public static void amazon_registration_page(String url) {
+		System.setProperty("webdriver.chrome.driver", "E://chromedriver-win64/chromedriver.exe");
+		System.out.println("Fire up chrome browser.");
+		WebDriver driver = new ChromeDriver();
+		sleep(2);
+		driver.get(url);
+		driver.manage().window().maximize();
+		WebElement fName = driver.findElement(By.id("ap_customer_name"));
+		fName.sendKeys("Samarth Shah");
+		WebElement email = driver.findElement(By.id("ap_email"));
+		email.sendKeys("samxyz@gmail.com");
+		WebElement password = driver.findElement(By.id("ap_password"));
+		password.sendKeys("Samarth@123");
+		WebElement rPass = driver.findElement(By.id("ap_password_check"));
+		rPass.sendKeys("Samarth_123");
+		
+		WebElement enterKey = driver.findElement(By.id("continue"));
+		enterKey.click();
+		sleep(3);
+		
+		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(src, new File("C://Users//Samarth//Desktop//Selenium Screenshot/Screen2.png"));
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		
+		sleep(2);
+		driver.close();
+		
+	}
 }
